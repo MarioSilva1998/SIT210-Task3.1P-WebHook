@@ -6,7 +6,6 @@ void setup() {
     
     pinMode(led, OUTPUT); //Sets onboard LED to be an output
     pinMode(photoresistor, INPUT); //Sets photodiode to be an input
-
 }
 
 void loop() {
