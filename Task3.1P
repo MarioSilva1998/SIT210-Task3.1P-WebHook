@@ -1,0 +1,26 @@
+int led = D7; //Calls the onboard LED
+int photoresistor = A0; //Assigns photodiode to pin A0
+int analogValue; //Placeholder for the analog levels recorded by photodiode
+
+void setup() {
+    
+    pinMode(led, OUTPUT); //Sets onboard LED to be an output
+    pinMode(photoresistor, INPUT); //Sets photodiode to be an input
+
+}
+
+void loop() {
+    
+    analogValue = analogRead(photoresistor); //Holds value recorded by photodiode
+    Particle.publish("light_level",String(analogValue), PRIVATE); //Webhook that sends light level reading to ThingSpeak
+    delay(5000); //Sets a delay between each reading
+    
+    if (analogValue > 1) //Following code is a visual aid. If any light is detected, the onboard LED will turn on
+    {
+        digitalWrite(led, HIGH);
+    }
+    else
+    {
+        digitalWrite(led, LOW);
+    }
+}
